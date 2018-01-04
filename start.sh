@@ -8,12 +8,14 @@ cat <<CONFIG > /etc/lsyncd/custom.lua
 -- User configuration file for lsyncd.
 --
 -- Make sure to add correct permissions.
+-- "CloseWrite or Modify" is required for docker "mv" events to function correctly
 --
 settings {
     statusFile = "/tmp/lsyncd.stat",
     logfile = "/tmp/lsyncd.log",
     statusInterval = 1,
     nodaemon = true,
+    inotifyMode = "CloseWrite or Modify",
 }
 
 sync {
